@@ -1,0 +1,73 @@
+﻿<UserControl x:Class="PipeGeneration.GUI.SettingView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PipeGeneration.GUI"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="350">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="27*"/>
+            <RowDefinition Height="613*"/>
+            <RowDefinition Height="160*"/>
+        </Grid.RowDefinitions>
+        <Button Grid.Row="0" Width="60" Content="Import" VerticalAlignment="Center" HorizontalAlignment="Right">
+        </Button>
+        <ListView Grid.Row="1" ItemsSource="{Binding Profiles}" SelectedItem="{Binding profileSelected}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Height" Value="40" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+                <GridView AllowsColumnReorder="true" x:Name="GridView">
+                    <GridView.Columns>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox IsChecked="{Binding IsCheck}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding DisplayName}" Header="Profile" Width="80" />
+                        <GridViewColumn Header="Pipe Size" Width="120" >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding pipeSize}" Width="120" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" 
+                                             BorderThickness="0"
+                                            VerticalContentAlignment="Center" Height="40"></TextBox>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Offset" Width="120" >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding Offset}"  Width="120" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" 
+                                             BorderThickness="0"
+                                            VerticalContentAlignment="Center" Height="40"></TextBox>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Cover Thickness" Width="120" >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding CoverThickness}"  Width="120" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" 
+                                             BorderThickness="0"
+                                            VerticalContentAlignment="Center" Height="40"></TextBox>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView.Columns>
+
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <GroupBox Grid.Row="2">
+            <Button Width="120" Height="30" Content="Routing From Lines" Command="{Binding routingfromLinesCmd}"  
+                    CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor,
+                                                               AncestorType={x:Type UserControl}}}">
+            </Button>
+        </GroupBox>
+    </Grid>
+</UserControl>
